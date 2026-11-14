@@ -1,0 +1,71 @@
+# pocketbot.toml: the one file you edit to make your own bot.
+# Everything the scripts and the browser runtime need to know about your bot lives here or in knowledge/.
+
+[bot]
+name = "Biscuit"
+# Used as the system prompt for training AND at runtime. Keep it short: a 135M model follows short prompts best.
+system_prompt = "You are Biscuit, a tiny offline assistant for Corner Bakery. Answer briefly and correctly. If context is given, answer from it. If you do not know, say so and point to the shop email."
+# Fixed replies. The runtime sends these without asking the model (rules run first), and the training data teaches the same wording.
+identity_reply   = "I'm Biscuit, a tiny assistant for Corner Bakery. I can answer questions about our opening hours, menu, orders and delivery."
+injection_reply  = "Nice try! I'm Biscuit and I only help with questions about Corner Bakery. What would you like to know?"
+harmful_reply    = "I can't help with that. I only help with questions about Corner Bakery."
+unknown_reply    = "I don't see that in the information I have, so I'd rather not guess. Please email hello@cornerbakery.example."
+offtopic_reply   = "I can't help with that one. I only know about Corner Bakery: hours, menu, orders and delivery."
+empty_reply      = "Hmm, I'd better not answer that one. Can I help with the menu, hours or delivery instead?"
+greeting_reply   = "Hi, I'm Biscuit! Ask me about our hours, menu, orders or delivery."
+thanks_reply     = "You're welcome! Anything else I can help with?"
+
+[model]
+base    = "HuggingFaceTB/SmolLM2-135M-Instruct"   # the only base model this repo has been tested with
+version = "1"                                      # bump after retraining: browsers cache the model file by this number
+
+[data]
+seed = 7
+val_fraction = 0.08
+paraphrases = 3          # wrapper phrasings added to each FAQ question ("Quick question: ...")
+grounded_copies = 3      # how many with-context copies of each FAQ entry to generate (the model learns to answer FROM the context)
+rewordings = 4           # reworded copies of each FAQ question (different phrasing, prefixes, swaps), always paired with the correct passage
+maths = true             # exact arithmetic examples (the runtime calculator answers sums; this only teaches the answer format)
+unknown_questions = [    # questions the bot should refuse to guess; the context shown to it does NOT contain the answer
+  "What is the owner's home address?", "Do you have a branch in another country?", "What is the Wi-Fi password?",
+  "Who is your supplier for flour?", "Can I buy shares in the bakery?", "What is the manager's phone number?",
+]
+
+[train]                  # stage 1: full fine-tune
+epochs = 10
+lr = 5e-5
+batch = 4
+accum = 4                # gradient accumulation: effective batch = batch * accum
+max_len = 640
+
+[qat]                    # stage 2: quantization-aware fine-tune (weights rounded to the 4-bit grid in every forward pass)
+epochs = 6
+lr = 2e-5
+block = 32               # 4-bit block size; must divide the model's hidden size (576 for SmolLM2-135M)
+
+[export]
+accuracy_level = 4       # ONNX Runtime MatMulNBits activation precision (4 = int8, fastest; 0 = fp32)
+
+[runtime]
+max_new_tokens = 100
+retrieval_top = 4
+context_chars = 1300
+faq_weight = 1.1         # >1 ranks FAQ entries above plain document passages
+# Words in a question that should also search for other words. Add your own vocabulary here.
+aliases = { cost = "price", prices = "price", open = "hours", closed = "hours", deliver = "delivery", gluten = "allergen" }
+
+[provider]
+# Who writes the answer once the rules, calculator and search have run.
+#   "local" = the 4-bit model in the visitor's tab (default; works offline, nothing is sent anywhere)
+#   "http"  = any OpenAI-compatible chat endpoint: OpenAI, Ollama, LM Studio, llama.cpp server, Groq... or your own proxy (see docs/INTEGRATIONS.md)
+type = "local"
+# --- only used when type = "http" ---
+endpoint = "http://localhost:11434/v1/chat/completions"   # example: Ollama on the visitor's own machine. For a paid API use YOUR proxy URL, never the vendor URL.
+model = "llama3.2"
+max_tokens = 300
+temperature = 0.2
+timeout_s = 30
+use_search = true            # send the retrieved passages to the provider as context (recommended: keeps answers tied to your knowledge)
+fallback_to_local = true     # if the endpoint fails or times out, answer with the in-browser model instead
+# Do NOT put an API key in this file or in "headers": bot.config.json is a public file. Keys belong in a proxy (examples/proxy/).
+headers = {}

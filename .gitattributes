@@ -1,0 +1,17 @@
+# Normalise line endings in text files so Windows and Linux contributors do not create noisy diffs.
+* text=auto
+*.py text eol=lf
+*.js text eol=lf
+*.mjs text eol=lf
+*.md text eol=lf
+*.toml text eol=lf
+*.json text eol=lf
+*.txt text eol=lf
+*.yml text eol=lf
+
+# Binary files: no diff, no merge, no line-ending conversion.
+*.gif binary
+*.png binary
+*.onnx binary
+*.safetensors binary
+*.wasm binary

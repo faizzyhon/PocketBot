@@ -1,0 +1,21 @@
+name: tests
+on: [push, pull_request]
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - name: Python tests (4-bit packing; the torch cross-check is skipped without torch)
+        run: |
+          pip install numpy
+          python -m unittest discover tests
+      - name: JavaScript tests (calculator, search)
+        run: node tests/test_runtime.mjs
+      - name: Build the training data for the sample bot
+        run: python scripts/01_build_data.py
+      - name: Repository safety check
+        run: python scripts/check_repo.py

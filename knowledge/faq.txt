@@ -1,0 +1,144 @@
+# Sample knowledge base: a FICTIONAL bakery. Replace everything here with your own business, product or topic.
+# Format: "@@ category | weight" starts an entry, then one or more "Q:" lines (different ways to ask) and an "A:" line.
+# Write answers the way you want the bot to say them. Short, factual, one idea per entry. More Q: lines = better coverage.
+
+@@ hours
+Q: What are your opening hours?
+Q: When are you open?
+Q: What time do you open and close?
+A: We're open Monday to Saturday 7:00 to 18:00 and Sunday 8:00 to 14:00.
+
+@@ hours
+Q: Are you open on public holidays?
+Q: Are you open at Christmas?
+A: On public holidays we open 8:00 to 13:00. We're closed on Christmas Day and New Year's Day.
+
+@@ location
+Q: Where are you?
+Q: What is your address?
+Q: How do I find the bakery?
+A: Corner Bakery is at 12 Mill Lane, Riverton, on the corner by the bus stop. Bus 14 stops outside.
+
+@@ location
+Q: Is there parking?
+Q: Where can I park?
+A: There are 4 free parking spaces behind the shop, entrance from Church Street.
+
+@@ contact
+Q: How can I contact you?
+Q: What is your email?
+Q: What is your phone number?
+A: Email hello@cornerbakery.example or call 555-0142 during opening hours.
+
+@@ menu
+Q: How much is a sourdough loaf?
+Q: What does sourdough cost?
+A: A sourdough loaf is $6.50. A baguette is $3.20.
+
+@@ menu
+Q: How much is a croissant?
+Q: What do your croissants cost?
+A: A butter croissant is $3.00 and an almond croissant is $3.80.
+
+@@ menu
+Q: How much is a cinnamon bun?
+Q: What do you charge for cupcakes?
+A: A cinnamon bun is $3.50 and a cupcake is $3.25.
+
+@@ menu
+Q: How much is a coffee?
+Q: What are your coffee prices?
+A: Filter coffee is $3.00 and a flat white is $3.80. The 10th coffee on a stamp card is free.
+
+@@ menu
+Q: What cakes do you make?
+Q: Do you make birthday cakes?
+Q: What flavours of cake do you have?
+A: We make birthday cakes in vanilla, chocolate, carrot and lemon. An 8-inch cake is $38. Order at least 48 hours ahead.
+
+@@ menu
+Q: Do you make wedding cakes?
+A: Yes. Wedding cakes are made to order and priced by quote. Email hello@cornerbakery.example with your date and guest numbers.
+
+@@ allergens
+Q: Do you have gluten-free options?
+Q: Is there anything gluten free?
+A: We bake gluten-free brownies and a gluten-free loaf on Fridays and Saturdays. They are made in the same kitchen as our wheat products, so we can't promise they are free from traces.
+
+@@ allergens
+Q: Do you have vegan options?
+Q: Is anything vegan?
+A: Our sourdough, baguette and oat cookies are vegan. Croissants, buns and cakes contain butter, milk or eggs.
+
+@@ allergens
+Q: What allergens are in your food?
+Q: Do you use nuts?
+A: Our kitchen handles wheat, milk, eggs, nuts and sesame. The almond croissant contains almonds. Ask at the counter if you have an allergy.
+
+@@ orders
+Q: How do I place an order?
+Q: Can I order online?
+A: Order in the shop, by phone on 555-0142, or by email. Small orders are ready in 20 minutes.
+
+@@ orders
+Q: Can I reserve a loaf?
+Q: Do you sell out of bread?
+A: Bread comes out of the oven from 5 am and sourdough is usually gone by 3 pm. Call 555-0142 to reserve a loaf.
+
+@@ orders
+Q: How do I order a custom cake?
+Q: Do I need to pay a deposit for a cake?
+A: Custom cakes need 48 hours' notice and a 30% deposit.
+
+@@ delivery
+Q: Do you deliver?
+Q: Can you deliver to my house?
+A: Yes, within 5 km of the shop. Delivery is $4, free for orders over $40.
+
+@@ delivery
+Q: When do you deliver?
+Q: What are the delivery times?
+A: We deliver Tuesday to Saturday 9:00 to 16:00. Order by 11:00 for same-day delivery.
+
+@@ payment
+Q: What payment methods do you accept?
+Q: Can I pay by card?
+A: Cards, contactless and cash. We don't take cheques.
+
+@@ payment
+Q: Do you sell gift cards?
+A: Yes, gift cards are $10, $25 and $50, sold in the shop.
+
+@@ catering
+Q: Do you do catering?
+Q: Can you cater an office event?
+A: Yes, for 10 or more people with 3 days' notice. Pastry platters start at $45.
+
+@@ policy
+Q: What if my order is wrong?
+Q: Can I get a refund?
+A: Tell us within 24 hours and we'll replace the item or refund it.
+
+@@ policy
+Q: Are dogs allowed?
+Q: Can I bring my dog?
+A: Dogs are welcome on the patio. Inside, only assistance dogs are allowed.
+
+@@ policy
+Q: Is there Wi-Fi?
+Q: Do you have free Wi-Fi?
+A: Yes, free Wi-Fi for customers. Ask at the counter for the current code.
+
+@@ policy
+Q: Is there a student discount?
+A: Students get 10% off on weekdays after 14:00 with a valid student ID.
+
+@@ seating
+Q: How many seats do you have?
+Q: Can I sit inside?
+A: There are 24 seats inside and 12 on the patio.
+
+@@ jobs
+Q: Are you hiring?
+Q: How do I apply for a job?
+A: We hire seasonal bakers and counter staff. Send your CV to jobs@cornerbakery.example.
