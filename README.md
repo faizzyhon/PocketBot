@@ -2,6 +2,8 @@
 
 Train a small chatbot on your own FAQ and run it **inside the web page**: no server, no API key, nothing sent anywhere. The model is a fine-tuned 135M-parameter language model compressed to 4 bits (about 89 MB), run by ONNX Runtime on the visitor's graphics card or CPU. You can also point the same bot at an external API or a local model server instead.
 
+**Live:** the reference bot runs on [faizzyhon.com](https://faizzyhon.com) (click the robot, then the ⚡ button for offline mode). **Write-up:** [How I built PocketBot](https://faizzyhon.com/blog/posts/pocketbot-offline-chatbot-in-the-browser-4-bit-fine-tuned-model.html).
+
 ![pipeline](docs/pipeline.gif)
 
 *The build (top) happens once on your computer. The run (bottom) happens in the browser for every question.*
@@ -113,6 +115,21 @@ docs/                 the documents above, GIFs and images, make_docs_assets.py
 ```
 
 Run the tests: `python -m unittest discover tests && node tests/test_runtime.mjs && node tests/test_proxy.mjs`. Before pushing: `python scripts/check_repo.py`.
+
+## Developer
+
+Built and maintained by **Muhammad Faizan** (faizzyhon), software and AI engineer.
+
+| | |
+|---|---|
+| Website | [faizzyhon.com](https://faizzyhon.com) |
+| Blog | [faizzyhon.com/blog](https://faizzyhon.com/blog/) |
+| GitHub | [github.com/faizzyhon](https://github.com/faizzyhon) |
+| LinkedIn | [linkedin.com/in/faizzyhon](https://www.linkedin.com/in/faizzyhon) |
+| Email | support@faizzyhon.com |
+| Hire me / custom bots | [faizzyhon.com/services.html](https://faizzyhon.com/services.html) · [contact](https://faizzyhon.com/contact.html) |
+
+Bugs and ideas: open an issue on this repository. Related work: [rihla-llm](https://github.com/faizzyhon/rihla-llm) (multilingual domain LLM pipeline) and [Gale](https://github.com/faizzyhon/Gale) (download manager).
 
 ## Licence and credits
 
